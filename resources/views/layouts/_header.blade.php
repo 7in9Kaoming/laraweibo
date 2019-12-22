@@ -7,12 +7,13 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
+        @if(Auth::check())
         <li class="nav-item">
           <a class="nav-link" href="{{ route('users.index') }}">用户列表</a>
         </li>
-        @if(Auth::check())
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{{ $user->gravatar('24px') }}" style="border-radius: 50%;">
             {{ $user->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -20,7 +21,7 @@
             <a class="dropdown-item" href="#">编辑资料</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" id="logout" href="#">
-              <form action="logout" method="POST">
+              <form action="{{ route('logout') }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-block btn-sm btn-danger">退出</button>
