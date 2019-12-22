@@ -13,12 +13,12 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{ $user->gravatar('24px') }}" style="border-radius: 50%;">
-            {{ $user->name }}
+            <img src="{{ Auth::user()->gravatar('24px') }}" style="border-radius: 50%;">
+            {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">个人中心</a>
-            <a class="dropdown-item" href="#">编辑资料</a>
+            <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人中心</a>
+            <a class="dropdown-item" href="{{ route('users.edit', Auth::user()) }}">编辑资料</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" id="logout" href="#">
               <form action="{{ route('logout') }}" method="POST">
