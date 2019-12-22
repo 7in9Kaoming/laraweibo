@@ -7,6 +7,14 @@ use Auth;
 
 class SessionsController extends Controller
 {
+    public function __construct()
+    {
+        // 未登录用户可访问
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     /**
     * 显示登录表单
     */
@@ -28,7 +36,9 @@ class SessionsController extends Controller
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
             session()->flash('success', '欢迎回来！');
-            return redirect()->route('users.show', [Auth::user()]);
+            $fallback = route('users.show', Auth::user());
+            // 重定向中的 intended 方法将经由身份验证中间件将用户重定向到身份验证前截获的 URL
+            return redirect()->intended($fallback);
         }
         session()->flash('danger', '佷抱歉，您的邮箱和密码不匹配');
         return redirect()->back()->withInput();

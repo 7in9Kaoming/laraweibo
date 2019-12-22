@@ -18,8 +18,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        // 已登录用户访问登录或注册页面时，自动跳转到首页
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+            session()->flash('info', '您已登录，无需再操作');
+            return redirect('/');
         }
 
         return $next($request);

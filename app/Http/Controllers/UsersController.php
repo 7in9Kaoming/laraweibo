@@ -8,6 +8,18 @@ use Auth;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => ['show', 'create', 'store']
+        ]);
+
+        // 未登录用户可访问
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     /**
     * 显示登录表单
     */
@@ -48,10 +60,11 @@ class UsersController extends Controller
 	}
 
     /**
-    * 显示资料编辑表单
+    * 显示个人资料编辑表单
     */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -60,6 +73,7 @@ class UsersController extends Controller
     */
     public function update(User $user, Request $request)
     {
+        $this->authorize('update', $user);
         // 不填密码时，只验证和更新名字
         $this->validate($request, [
             'name' => 'required|max:50'
