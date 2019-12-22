@@ -37006,6 +37006,13 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+$(function () {
+  setTimeout(function () {
+    $('.alert-success').fadeOut(1000);
+    $('.alert-info').fadeOut(1000);
+  }, 1500);
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
