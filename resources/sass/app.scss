@@ -14,19 +14,19 @@ footer {
   color: #777;
   font-size: 13px;
   font-weight: bold;
-}
 
-a {
-  color: #555;
-}
+  a {
+    color: #555;
+  }
 
-a:hover {
-  color: #222;
-}
+  a:hover {
+    color: #222;
+  }
 
-img.brand-icon {
-  width: 17px;
-  height: 17px;
+  img.brand-icon {
+    width: 17px;
+    height: 17px;
+  }
 }
 
 /* User gravatar */
@@ -37,7 +37,7 @@ section.user_info {
   text-align: center;
   .gravatar {
     float: none;
-    max-width: 70px; 
+    max-width: 70px;
   }
   h1 {
     font-size: 1.4em;
