@@ -9,7 +9,7 @@
       @include('users._user')
     @endforeach
   </div>
-  <div class="mt-3">
+  <div class="mt-3 d-flex justify-content-center">
     {!! $users->render() !!}
   </div>
 </div>
