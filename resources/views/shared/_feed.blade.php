@@ -4,7 +4,7 @@
       @include('statuses._status',  ['user' => $status->user])
     @endforeach
   </ul>
-  <div class="mt-5">
+  <div class="mt-5 d-flex justify-content-center">
     {!! $feed_items->render() !!}
   </div>
 @else
